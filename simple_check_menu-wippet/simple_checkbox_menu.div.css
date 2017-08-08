@@ -1,0 +1,16 @@
+/* styles for simpleCheckboxMenu (SCM) */
+
+.scm-bg-highlight{
+    background-color:red;
+}
+.scm-font-highlight{
+    color:blue;
+}
+.scm-element-show{
+    display: inline;
+}
+.scm-element-hide{
+    display: none;
+}
+
+/* end default styles wippet */
