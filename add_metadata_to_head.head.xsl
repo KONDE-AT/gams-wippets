@@ -34,7 +34,7 @@
         <xsl:param name="type">website</xsl:param>
         <xsl:param name="url">http://gams.uni-graz.at/context:gams</xsl:param>
         <xsl:param name="image">https://static.uni-graz.at/fileadmin/_processed_/e/d/csm_gams-start1_4ebc8f634e.jpg</xsl:param>
-        <xsl:param name="publisher" select="//t:pulicationStmt//t:authority"/>
+        <xsl:param name="publisher" select="//t:publicationStmt//t:authority"/>
         <xsl:param name="author" select="//t:titleStmt//t:author"/>
         <xsl:param name="editor" select="//t:respStmt//t:persName"/>
         <xsl:param name="description" select="//t:editionStmt"/>
@@ -47,7 +47,6 @@
         
         <!-- DCTERMS -->
         <meta name="dcterms.type" content="{$type}"></meta>
-        <meta name="dcterms.title" content="{$title}"></meta>
         <meta name="dcterms.title" content="{$title}"></meta>
         <meta name="dcterms.publisher" content="{$publisher}"></meta>
         <meta name="dcterms.issued" content="{$yearOfPublication}"></meta>
