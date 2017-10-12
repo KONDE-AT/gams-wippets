@@ -22,7 +22,7 @@
     </doc>
     
     
-    <xsl:template match="t:choice[t:abbr and t:expan]" mode="transcription">
+    <xsl:template match="t:choice[t:abbr and t:expan]">
         <!-- this example wippet is used for the element pair tei:abbr/tei:expan 
             to use different element change the element names in the square brackets, e.g. [t:abbr and t:expan] => [t:am and t:ex] and change the @select on xsl:with-param below
             besides for tei:choice the wippet can also be used for tei:subst -->
@@ -52,21 +52,21 @@
             </xsl:attribute>
             <xsl:attribute name="data-content">
                 <xsl:text>&lt;div&gt;</xsl:text>
-                <xsl:apply-templates select="$in_popover" mode="#current" />
+                <xsl:apply-templates select="$in_popover" />
                 <xsl:text>&lt;/div&gt;</xsl:text>
             </xsl:attribute>
             
-            <xsl:apply-templates select="$in_trans" mode="#current"/>
+            <xsl:apply-templates select="$in_trans"/>
             
         </a>
     </xsl:template>
     
     
     
-    <xsl:template match="t:ex" mode="transcription">
+    <xsl:template match="t:expan/t:ex">
         <!-- if the popover is used for abbreviations, the expanded part will be set into italics -->
         <xsl:text>&lt;i&gt;</xsl:text>
-        <xsl:apply-templates mode="#current"/>
+            <xsl:apply-templates/>
         <xsl:text>&lt;/i&gt;</xsl:text>
     </xsl:template>
     
