@@ -27,6 +27,11 @@
 	user-select: none;          /* Likely future */      
 	
 }
+.tei-graphic{
+	
+	width:300px;
+	
+}
 
 ins, del{
     color:red;

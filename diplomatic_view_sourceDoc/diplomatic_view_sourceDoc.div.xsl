@@ -64,9 +64,6 @@
                     <xsl:attribute name="class">
                         <xsl:text>tei-graphic</xsl:text>
                     </xsl:attribute>
-                    <xsl:attribute name="style">
-                        <xsl:text>width:300px</xsl:text>
-                    </xsl:attribute>
                 </xsl:element></a>
                 
             </xsl:if>
