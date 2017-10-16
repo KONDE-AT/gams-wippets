@@ -16,7 +16,7 @@
             <p>Example implementation: http://glossa.uni-graz.at/o:epistles.1400</p>
             <p>Dependencies: Requires the wippet choice_popover-wippet. The XSLT @mode in the choice_popover-wippet might need to be changed!</p>
             <p>Dependencies: Requires diplomatic_view_sourceDoc.div.css to be included.</p>
-            <p>Dependencies: Requires Twitter.</p>
+            <p>Dependencies: Requires Twitter Bootstrap 3+.</p>
         </desc>
     </doc>
     
