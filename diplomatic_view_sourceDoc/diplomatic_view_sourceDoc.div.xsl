@@ -22,20 +22,20 @@
     
     <xsl:template name="diplomatic_view">
         
-        <div data-name="transcription">
-                <xsl:apply-templates select="//t:sourceDoc" mode="transcription"></xsl:apply-templates>
+        <div data-name="embedded_transcription">
+                <xsl:apply-templates select="//t:sourceDoc" mode="embedded_transcription"></xsl:apply-templates>
         </div>
         
     </xsl:template>
     
     
-    <xsl:template match="t:*" mode="transcription">
+    <xsl:template match="t:*" mode="embedded_transcription">
         <!-- default for all TEI elements with @mode=transcription -->
            <xsl:apply-templates mode="#current"/>
     </xsl:template>
  
    
-    <xsl:template match="t:surfaceGrp | t:surface | t:zone" mode="transcription">
+    <xsl:template match="t:surfaceGrp | t:surface | t:zone" mode="embedded_transcription">
         <!-- transforms tei:surfaceGrp. tei:surface, tei:zone elements into html:div elements have a @class=tei-surface /@class=tei-surfaceGrp/ @class=tei-zone  -->
         <!-- if an @type is present its value is added after an underscore (e.g. @class=tei-zone_folio) -->
         <xsl:variable name="classValue">
@@ -74,7 +74,7 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="t:sourceDoc//t:graphic" mode="transcription">
+    <xsl:template match="t:sourceDoc//t:graphic" mode="embedded_transcription">
         <!-- transforms tei:graphic elements within the transcription, the html:img element has a @class=tei-graphic -->
             <xsl:element name="img">
                 <xsl:attribute name="src">
@@ -87,7 +87,7 @@
     </xsl:template>
     
     
-    <xsl:template match="t:line" mode="transcription">
+    <xsl:template match="t:line" mode="embedded_transcription">
         <!-- transforms tei:line to an html:div with a @class=tei-line, the line number is either generated from tei:@n or from the position of the line -->
         <!-- the html:span@class=line_number contains the line number, the html:span@class=line_text the transcription -->
         <xsl:variable name="classValue">
@@ -126,7 +126,7 @@
     
     <!-- ADDITIONS AND DELETIONS -->
     
-    <xsl:template match="t:add" mode="transcription">
+    <xsl:template match="t:add" mode="embedded_transcription">
         <!-- transforms tei:add to an html:ins with a @class=tei-add, if an @place is present its value is added after an underscore (@class=tei-add_above) -->
         <xsl:variable name="classValue">
             <xsl:text>tei-</xsl:text>
@@ -158,7 +158,7 @@
         </ins>
     </xsl:template>
     
-    <xsl:template match="t:del" mode="transcription">
+    <xsl:template match="t:del" mode="embedded_transcription">
         <!-- transforms tei:del to html:del with a @class=tei-del -->
         <del>
             <xsl:attribute name="class">
@@ -173,7 +173,7 @@
 
     <!-- EDITORIAL CORRECTIONS -->
     
-    <xsl:template match="t:sic | t:orig" mode="transcription">
+    <xsl:template match="t:sic | t:orig" mode="embedded_transcription">
         <!-- Per default the original (not corrected) view is generated -->
         <!-- transforms the tei:sic and tei:orig to an html:span with a @class=tei-sic / tei-orig -->
         <xsl:variable name="classValue">
@@ -183,7 +183,7 @@
         </xsl:variable>
         <span>
             <xsl:attribute name="class" select="$classValue"/>
-            <xsl:apply-templates mode="transcription"/>
+            <xsl:apply-templates mode="embedded_transcription"/>
         </span>
     </xsl:template>
     
@@ -191,7 +191,7 @@
     <!-- HIGHLIGHTING -->
     
     
-    <xsl:template match="t:hi[@rend]" mode="transcription">
+    <xsl:template match="t:hi[@rend]" mode="embedded_transcription">
         <!-- transforms the tei:pc to an html:span with a @class=tei-hi, if an @rend is present its value is added after an underscore (@class=tei-hi_red) -->
         <xsl:variable name="classValue">
             <xsl:text>tei-</xsl:text>
@@ -214,7 +214,7 @@
    
     
     <!-- PUNCTUATION -->
-    <xsl:template match="t:pc" mode="transcription">
+    <xsl:template match="t:pc" mode="embedded_transcription">
         <!-- transforms the tei:pc to an html:span with a @class=tei-pc, if a @type is present its value is added to @data-tei-pc -->
         <span>
             <xsl:attribute name="class">
@@ -231,7 +231,7 @@
     <!-- SPACES -->
     
     
-    <xsl:template match="t:space" mode="transcription">
+    <xsl:template match="t:space" mode="embedded_transcription">
         <!-- replaces the TEI space element with a whitespace character -->
         <xsl:text> </xsl:text>        
     </xsl:template>
