@@ -1,0 +1,44 @@
+/*Diplomatic View*/
+
+.tei-zone_column{
+	float:left;
+	width: 50%;
+}
+.tei-surfaceGrp_folio{
+	clear:both;
+}
+.tei-hi{
+	font-weight:bold;
+	color:red;
+}
+
+.tei-line>*{
+	
+	padding:5px;
+	
+}
+.line_number{
+	
+	text-align:right;
+	
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;      /* IE 10+ */
+	user-select: none;          /* Likely future */      
+	
+}
+.tei-graphic{
+	
+	width:300px;
+	
+}
+.tei-l{
+    padding-left:10px;
+}
+
+ins, del{
+    color:red;
+}
+
+
+/*END Diplomatic View*/
