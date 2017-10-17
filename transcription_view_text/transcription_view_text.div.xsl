@@ -370,6 +370,75 @@
         <!-- replaces the TEI space element with a whitespace character -->
         <xsl:text> </xsl:text>        
     </xsl:template>
+    
+    <!-- PERSON NAMES, PLACE NAMES, ORGANISATION NAMES -->
+    
+    <xsl:template match="t:persName or t:placeName or t:orgName or t:name or t:rs" mode="transcription">
+        <!-- basic template for encoded entities (names, person names, places, organisations, etc) within the tei:text
+            if an @ref is present a hyperlink is generated with the attribute value as target -->
+        <span>
+            <xsl:attribute name="class">
+                <xsl:text>tei-</xsl:text>
+                <xsl:value-of select="local-name()"/>
+            </xsl:attribute>
+            
+                <xsl:choose>
+                    <xsl:when test="local-name() = 'name' or local-name()= 'rs'">
+                        <xsl:if test="@type">
+                            <xsl:attribute name="data-tei-entity" select="@type">
+                        </xsl:attribute>
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:attribute name="data-tei-entity" select="local-name()">
+                    </xsl:otherwise>
+                </xsl:choose>
+            
+            <xsl:choose>
+                <xsl:when test="@ref">
+                    <xsl:element name="a">
+                        <xsl:attribute name="href" select="@ref">
+                        </xsl:attribute>
+                        <xsl:apply-templates mode="#current"/>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates mode="#current"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </span>
+    </xsl:template>
+    
+    <xsl:template match="t:note" mode="transcription">
+        <!-- basic template for encoded entities (names, person names, places, organisations, etc) within the tei:text
+            if an @ref is present a hyperlink is generated with the attribute value as target -->
+        <a href="" data-toggle="popover" style="color:blue">
+            <!-- Bootstrap popover requires an @data-toggle and @data-content, https://v4-alpha.getbootstrap.com/components/popovers/ -->
+            <xsl:attribute name="class">
+                <xsl:text>tei-</xsl:text>
+                <xsl:value-of select="local-name()"/>
+            </xsl:attribute>
+            
+            <xsl:attribute name="data-content">
+                <xsl:text>&lt;div&gt;</xsl:text>
+                    <xsl:apply-templates select="." />
+                <xsl:text>&lt;/div&gt;</xsl:text>
+            </xsl:attribute>
+            
+            <sup style="color:red">NOTE</sup>
+           
+        </a>
+    </xsl:template>
+    
+    <!-- Reference -->
+    <xsl:template match="t:ref" mode="transcription">
+        <!-- transforms the tei:ref to an html:a, the @target is used as the value for the html:@href -->
+        <xsl:element name="a">
+            <xsl:attribute name="href" select="@target">
+            </xsl:attribute>
+            <xsl:apply-templates mode="#current"/>
+        </xsl:element>
+    </xsl:template>
  
     
 </xsl:stylesheet>
