@@ -391,6 +391,7 @@
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:attribute name="data-tei-entity" select="local-name()">
+                        </xsl:attribute>
                     </xsl:otherwise>
                 </xsl:choose>
             
